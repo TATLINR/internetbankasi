@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Giriş</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function girisKontrol() {
+            var kullanici = document.getElementById("kadi").value;
+            var sifre = document.getElementById("sifre").value;
+
+            if(kullanici === "ilknur" && sifre === "010101") {
+                window.location.href = "index.html";
+            } else {
+                alert("Giriş gerçekleştirilemiyor. Tekrar deneyiniz.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-box">
+        <h2>İnternet Bankacılığı</h2>
+        <input type="text" id="kadi" placeholder="Kullanıcı Adı">
+        <input type="password" id="sifre" placeholder="Şifre">
+        <button onclick="girisKontrol()">Giriş Yap</button>
+    </div>
+</body>
+</html>
