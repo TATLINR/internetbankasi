@@ -8,7 +8,7 @@
 <script>
 function load() {
   if (localStorage.getItem("tema") === "koyu") document.body.classList.add("dark");
-  document.getElementById("kadi").value = localStorage.getItem("bank_user") || "ilknur";
+  document.getElementById("kadi").value = localStorage.getItem("bank_user") || "kullanıcı";
   document.getElementById("tema").checked = localStorage.getItem("tema") === "koyu";
   document.getElementById("bildirim").checked = localStorage.getItem("bildirim") !== "kapali";
 }

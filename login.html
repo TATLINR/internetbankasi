@@ -11,7 +11,7 @@ function girisKontrol(e) {
   var kadi = document.getElementById("kadi").value.trim();
   var sifre = document.getElementById("sifre").value;
   var msg = document.getElementById("msg");
-  if (kadi === "ilknur" && sifre === "010101") {
+  if (kadi === "kullanıcı" && sifre === "010101") {
     localStorage.setItem("bank_user", kadi);
     window.location.href = "index.html";
   } else {
@@ -29,12 +29,12 @@ function girisKontrol(e) {
     <h2>Web Bank</h2>
     <p>İnternet Bankacılığına hoş geldiniz</p>
     <label for="kadi">Kullanıcı Adı</label>
-    <input type="text" id="kadi" placeholder="örn. ilknur" autocomplete="username">
+    <input type="text" id="kadi" placeholder="örn. kullanıcı" autocomplete="username">
     <label for="sifre">Şifre</label>
     <input type="password" id="sifre" placeholder="••••••" autocomplete="current-password">
     <button class="primary" type="submit">Giriş Yap</button>
     <div id="msg" class="alert"></div>
-    <div class="demo-info">Demo giriş: <b>ilknur</b> / <b>010101</b></div>
+    <div class="demo-info">Demo giriş: <b>kullanıcı</b> / <b>010101</b></div>
   </form>
 </div>
 <script src="gecis.js" defer></script>
