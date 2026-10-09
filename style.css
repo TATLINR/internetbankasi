@@ -229,6 +229,10 @@ button.primary:hover { background: var(--accent-dark); }
   font-weight: 700; font-size: 14px; color: var(--muted); cursor: pointer;
 }
 .tabs button.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+#tab-giris.active { background: linear-gradient(135deg, #16a34a, #15803d); border-color: #15803d; }
+#tab-kayit.active { background: linear-gradient(135deg, #2563eb, #1e40af); border-color: #1e40af; }
+.tabs button:hover { border-color: var(--primary); color: var(--primary); }
+.tabs button.active:hover { color: #fff; }
 .demo-info {
   margin-top: 14px;
   font-size: 12px;
