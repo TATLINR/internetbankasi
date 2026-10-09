@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fatura Ödeme — İlknur Bank</title>
+<link rel="stylesheet" href="style.css">
+<script>
+function ode(e) {
+  if (e) e.preventDefault();
+  var kurum = document.getElementById("kurum").value;
+  var no = document.getElementById("fno").value.trim();
+  var tutar = parseFloat(document.getElementById("tutar").value);
+  var msg = document.getElementById("msg");
+  if (!no) { msg.className="alert err"; msg.textContent="Fatura numarası girin."; return false; }
+  if (!tutar || tutar <= 0) { msg.className="alert err"; msg.textContent="Geçerli bir tutar girin."; return false; }
+  var bakiye = parseFloat(localStorage.getItem("bakiye") || "25750");
+  if (tutar > bakiye) { msg.className="alert err"; msg.textContent="Yetersiz bakiye."; return false; }
+  localStorage.setItem("bakiye", String(bakiye - tutar));
+  msg.className="alert ok";
+  msg.textContent = kurum + " faturası (" + no + ") ödendi: " + tutar.toLocaleString("tr-TR",{minimumFractionDigits:2}) + " ₺";
+  document.getElementById("form").reset();
+  return false;
+}
+</script>
+</head>
+<body>
+<div class="topbar"><div class="brand"><div class="brand-mark">İB</div><span>İlknur Bank</span></div><a href="index.html">← Ana Sayfa</a></div>
+<div class="container">
+  <h1>Fatura Ödeme</h1>
+  <p class="muted">Kayıtlı ya da yeni faturalarını hızlıca öde.</p>
+  <form id="form" class="panel" onsubmit="return ode(event)">
+    <label for="kurum">Kurum</label>
+    <select id="kurum"><option>Elektrik</option><option>Su</option><option>Doğalgaz</option><option>Telefon / İnternet</option></select>
+    <label for="fno">Fatura / Abone No</label>
+    <input id="fno" type="text" placeholder="örn. 12345678">
+    <label for="tutar">Tutar (₺)</label>
+    <input id="tutar" type="number" min="1" step="0.01" placeholder="örn. 350">
+    <button class="primary" type="submit">Öde</button>
+    <div id="msg" class="alert"></div>
+    <a class="button-back" href="index.html">← Geri Dön</a>
+  </form>
+</div>
+</body>
+</html>

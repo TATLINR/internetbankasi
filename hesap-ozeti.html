@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hesap Özeti — İlknur Bank</title>
+<link rel="stylesheet" href="style.css">
+<script>
+window.onload = function() {
+  var b = Number(localStorage.getItem("bakiye") || "25750");
+  document.getElementById("bakiye").textContent = b.toLocaleString("tr-TR",{minimumFractionDigits:2}) + " ₺";
+};
+</script>
+</head>
+<body>
+<div class="topbar"><div class="brand"><div class="brand-mark">İB</div><span>İlknur Bank</span></div><a href="index.html">← Ana Sayfa</a></div>
+<div class="container">
+  <h1>Hesap Özeti</h1>
+  <p class="muted">Vadesiz hesap hareketlerin.</p>
+  <div class="balance-card"><div><small>Güncel Bakiye</small><div class="balance-amount" id="bakiye">—</div></div></div>
+  <div class="panel" style="max-width:100%">
+    <div class="table-wrap">
+    <table>
+      <tr><th>Tarih</th><th>Açıklama</th><th>Tutar</th></tr>
+      <tr><td>09.10.2026</td><td>Maaş ödemesi</td><td class="positive">+18.500,00 ₺</td></tr>
+      <tr><td>07.10.2026</td><td>Market alışverişi</td><td class="negative">-850,00 ₺</td></tr>
+      <tr><td>05.10.2026</td><td>EFT — Kira</td><td class="negative">-7.000,00 ₺</td></tr>
+      <tr><td>02.10.2026</td><td>Fatura — Elektrik</td><td class="negative">-420,00 ₺</td></tr>
+    </table>
+    </div>
+    <a class="button-back" href="index.html">← Geri Dön</a>
+  </div>
+</div>
+</body>
+</html>

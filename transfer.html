@@ -1,20 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-    <title>Para Transferi</title>
-    <link rel="stylesheet" href="style.css">
-    <script>
-        function gonder() {
-            alert("Para transferi gerçekleştirildi!");
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Transferi — İlknur Bank</title>
+<link rel="stylesheet" href="style.css">
+<script>
+function gonder(e) {
+  if (e) e.preventDefault();
+  var iban = document.getElementById("iban").value.trim();
+  var tutar = parseFloat(document.getElementById("tutar").value);
+  var msg = document.getElementById("msg");
+  if (iban.length < 10) { msg.className="alert err"; msg.textContent="Lütfen geçerli bir IBAN girin."; return false; }
+  if (!tutar || tutar <= 0) { msg.className="alert err"; msg.textContent="Lütfen geçerli bir tutar girin."; return false; }
+  var bakiye = parseFloat(localStorage.getItem("bakiye") || "25750");
+  if (tutar > bakiye) { msg.className="alert err"; msg.textContent="Yetersiz bakiye."; return false; }
+  localStorage.setItem("bakiye", String(bakiye - tutar));
+  msg.className="alert ok";
+  msg.textContent = tutar.toLocaleString("tr-TR",{minimumFractionDigits:2}) + " ₺ transfer edildi. Yeni bakiye: " + (bakiye-tutar).toLocaleString("tr-TR",{minimumFractionDigits:2}) + " ₺";
+  document.getElementById("form").reset();
+  return false;
+}
+</script>
 </head>
 <body>
-    <h2>Para Transferi</h2>
-    <input type="text" placeholder="IBAN">
-    <input type="text" placeholder="Tutar">
-    <button onclick="gonder()">Gönder</button>
-    <br><br>
-    <a class="button-back" href="index.html">Geri Dön</a>
+<div class="topbar"><div class="brand"><div class="brand-mark">İB</div><span>İlknur Bank</span></div><a href="index.html">← Ana Sayfa</a></div>
+<div class="container">
+  <h1>Para Transferi</h1>
+  <p class="muted">Havale ve EFT işlemlerini buradan yapabilirsin.</p>
+  <form id="form" class="panel" onsubmit="return gonder(event)">
+    <label for="iban">Alıcı IBAN</label>
+    <input id="iban" type="text" placeholder="TR__ ____ ____ ____ ____ ____ __">
+    <label for="tutar">Tutar (₺)</label>
+    <input id="tutar" type="number" min="1" step="0.01" placeholder="örn. 500">
+    <label for="aciklama">Açıklama (opsiyonel)</label>
+    <input id="aciklama" type="text" placeholder="örn. Kira ödemesi">
+    <button class="primary" type="submit">Gönder</button>
+    <div id="msg" class="alert"></div>
+    <a class="button-back" href="index.html">← Geri Dön</a>
+  </form>
+</div>
 </body>
 </html>
