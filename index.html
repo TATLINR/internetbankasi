@@ -5,10 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>İlknur Bank — Ana Sayfa</title>
 <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <script>
+function applyTheme() {
+  if (localStorage.getItem("tema") === "koyu") document.body.classList.add("dark");
+}
 function init() {
+  applyTheme();
   var user = localStorage.getItem("bank_user") || "Misafir";
-  document.getElementById("welcome").textContent = "Hoş geldin, " + user;
+  document.getElementById("welcome").innerHTML = 'Hoş geldin, <span class="user-name">' + user + " ✨</span>";
   if (!localStorage.getItem("bakiye")) localStorage.setItem("bakiye", "25750");
   document.getElementById("bakiye").textContent =
     Number(localStorage.getItem("bakiye")).toLocaleString("tr-TR", {minimumFractionDigits: 2}) + " ₺";
@@ -23,7 +30,10 @@ window.onload = init;
 <body>
 <div class="topbar">
   <div class="brand"><div class="brand-mark">İB</div><span>İlknur Bank</span></div>
-  <button class="link" onclick="cikis()">Çıkış Yap</button>
+  <div class="topbar-actions">
+    <a href="ayarlar.html">⚙️ Ayarlar</a>
+    <button class="link" onclick="cikis()">Çıkış Yap</button>
+  </div>
 </div>
 
 <div class="container">

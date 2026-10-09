@@ -6,6 +6,7 @@
 <title>Para Transferi — İlknur Bank</title>
 <link rel="stylesheet" href="style.css">
 <script>
+if (localStorage.getItem("tema") === "koyu") document.body.classList.add("dark");
 function gonder(e) {
   if (e) e.preventDefault();
   var iban = document.getElementById("iban").value.trim();
@@ -24,7 +25,7 @@ function gonder(e) {
 </script>
 </head>
 <body>
-<div class="topbar"><div class="brand"><div class="brand-mark">İB</div><span>İlknur Bank</span></div><a href="index.html">← Ana Sayfa</a></div>
+<div class="topbar"><div class="brand"><div class="brand-mark">İB</div><span>İlknur Bank</span></div><div class="topbar-actions"><a href="ayarlar.html">⚙️ Ayarlar</a><a href="index.html">← Ana Sayfa</a></div></div>
 <div class="container">
   <h1>Para Transferi</h1>
   <p class="muted">Havale ve EFT işlemlerini buradan yapabilirsin.</p>

@@ -77,6 +77,22 @@ body {
 
 h1, h2 { margin: 0 0 12px; color: var(--primary); }
 .topbar h2 { color: #fff; margin: 0; }
+
+/* Karşılama yazısı — şık serif font */
+#welcome {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+  background: linear-gradient(90deg, var(--primary), #2b5ea7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+#welcome .user-name { font-style: italic; }
+
+.topbar-actions { display: flex; gap: 8px; align-items: center; }
 p.muted { color: var(--muted); margin: 6px 0 18px; }
 
 /* Bakiye kartı */
@@ -251,6 +267,52 @@ th { color: var(--muted); font-weight: 700; font-size: 12px; text-transform: upp
 }
 .alert.ok { display: block; background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
 .alert.err { display: block; background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+/* Ayarlar sayfası */
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.settings-row:last-child { border-bottom: none; }
+.settings-row strong { display: block; font-size: 15px; }
+.settings-row small { color: var(--muted); font-size: 13px; }
+.switch { position: relative; width: 46px; height: 26px; flex-shrink: 0; }
+.switch input { opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.slider {
+  position: absolute; inset: 0;
+  background: #cbd5e1; border-radius: 999px;
+  pointer-events: none; transition: 0.2s;
+}
+.slider:before {
+  content: ""; position: absolute;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #fff; top: 3px; left: 3px; transition: 0.2s;
+}
+.switch input:checked + .slider { background: var(--accent); }
+.switch input:checked + .slider:before { transform: translateX(20px); }
+
+/* Koyu tema (ayarlar ile açılır) */
+body.dark {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --border: #334155;
+  --shadow: 0 4px 18px rgba(0,0,0,0.4);
+}
+body.dark .topbar { background: linear-gradient(135deg, #020617, #1e3a5f); }
+body.dark input, body.dark select { background: #0f172a; color: #e2e8f0; }
+body.dark .login-box { background: #1e293b; }
+body.dark .login-box h2 { color: #e2e8f0; }
+body.dark #welcome { background: linear-gradient(90deg, #93c5fd, #e0f2fe); -webkit-background-clip: text; background-clip: text; }
+body.dark .balance-card { background: linear-gradient(135deg, #020617, #1e3a5f); }
+body.dark .button-back { background: #1e293b; color: #e2e8f0; }
+body.dark .demo-info { background: #0f172a; border-color: #334155; }
 
 @media (max-width: 600px) {
   .balance-amount { font-size: 26px; }

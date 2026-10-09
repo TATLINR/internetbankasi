@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayarlar — İlknur Bank</title>
+<link rel="stylesheet" href="style.css">
+<script>
+function load() {
+  if (localStorage.getItem("tema") === "koyu") document.body.classList.add("dark");
+  document.getElementById("kadi").value = localStorage.getItem("bank_user") || "ilknur";
+  document.getElementById("tema").checked = localStorage.getItem("tema") === "koyu";
+  document.getElementById("bildirim").checked = localStorage.getItem("bildirim") !== "kapali";
+}
+function saveUser(e) {
+  if (e) e.preventDefault();
+  var v = document.getElementById("kadi").value.trim();
+  if (!v) return false;
+  localStorage.setItem("bank_user", v);
+  msg("Kullanıcı adı güncellendi: " + v);
+  return false;
+}
+function toggleTema(el) {
+  localStorage.setItem("tema", el.checked ? "koyu" : "acik");
+  document.body.classList.toggle("dark", el.checked);
+}
+function toggleBildirim(el) {
+  localStorage.setItem("bildirim", el.checked ? "acik" : "kapali");
+  msg(el.checked ? "Bildirimler açıldı." : "Bildirimler kapatıldı.");
+}
+function msg(t) {
+  var m = document.getElementById("msg");
+  m.className = "alert ok"; m.textContent = t;
+}
+window.onload = load;
+</script>
+</head>
+<body>
+<div class="topbar"><div class="brand"><div class="brand-mark">İB</div><span>İlknur Bank</span></div><a href="index.html">← Ana Sayfa</a></div>
+<div class="container">
+  <h1>Ayarlar</h1>
+  <p class="muted">Profilini ve uygulama tercihlerini yönet.</p>
+
+  <form class="panel" style="max-width:100%" onsubmit="return saveUser(event)">
+    <div class="settings-row">
+      <div><strong>👤 Görünen ad</strong><small>Ana sayfadaki karşılama yazısında görünür</small></div>
+    </div>
+    <label for="kadi">Kullanıcı adı</label>
+    <input id="kadi" type="text" maxlength="20">
+    <button class="primary" type="submit">Kaydet</button>
+
+    <div class="settings-row" style="margin-top:18px">
+      <div><strong>🌙 Koyu tema</strong><small>Göz yormayan gece görünümü</small></div>
+      <label class="switch"><input id="tema" type="checkbox" onchange="toggleTema(this)"><span class="slider"></span></label>
+    </div>
+    <div class="settings-row">
+      <div><strong>🔔 Bildirimler</strong><small>Kampanya ve işlem bilgilendirmeleri</small></div>
+      <label class="switch"><input id="bildirim" type="checkbox" onchange="toggleBildirim(this)"><span class="slider"></span></label>
+    </div>
+
+    <div id="msg" class="alert"></div>
+    <a class="button-back" href="index.html">← Geri Dön</a>
+  </form>
+</div>
+</body>
+</html>
