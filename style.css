@@ -326,7 +326,8 @@ body.dark input, body.dark select { background: #0f172a; color: #e2e8f0; }
 body.dark .login-box { background: #1e293b; }
 body.dark .login-box h2 { color: #e2e8f0; }
 body.dark .balance-card { background: linear-gradient(135deg, #020617, #1e3a5f); }
-body.dark .button-back { background: #1e293b; color: #e2e8f0; }
+body.dark .button-back { background: #475569; color: #fff; border: 1px solid #64748b; }
+body.dark .button-back:hover { background: #64748b; }
 body.dark .demo-info { background: #0f172a; border-color: #334155; }
 
 @media (max-width: 600px) {
