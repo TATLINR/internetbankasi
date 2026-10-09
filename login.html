@@ -6,12 +6,25 @@
 <title>Web Bank — Giriş</title>
 <link rel="stylesheet" href="style.css">
 <script>
+function getUsers() {
+  try { return JSON.parse(localStorage.getItem("bank_users") || '{"kullanıcı":"010101"}'); }
+  catch (e) { return {"kullanıcı":"010101"}; }
+}
+function showTab(which) {
+  document.getElementById("tab-giris").classList.toggle("active", which === "giris");
+  document.getElementById("tab-kayit").classList.toggle("active", which === "kayit");
+  document.getElementById("form-giris").style.display = which === "giris" ? "block" : "none";
+  document.getElementById("form-kayit").style.display = which === "kayit" ? "block" : "none";
+  document.getElementById("msg").className = "alert";
+  document.getElementById("msg").textContent = "";
+}
 function girisKontrol(e) {
   if (e) e.preventDefault();
   var kadi = document.getElementById("kadi").value.trim();
   var sifre = document.getElementById("sifre").value;
   var msg = document.getElementById("msg");
-  if (kadi === "kullanıcı" && sifre === "010101") {
+  var users = getUsers();
+  if (users[kadi] && users[kadi] === sifre) {
     localStorage.setItem("bank_user", kadi);
     window.location.href = "index.html";
   } else {
@@ -20,22 +33,57 @@ function girisKontrol(e) {
   }
   return false;
 }
+function kayitOl(e) {
+  if (e) e.preventDefault();
+  var kadi = document.getElementById("ykadi").value.trim();
+  var s1 = document.getElementById("ysifre").value;
+  var s2 = document.getElementById("ysifre2").value;
+  var msg = document.getElementById("msg");
+  if (kadi.length < 3) { msg.className = "alert err"; msg.textContent = "Kullanıcı adı en az 3 karakter olmalı."; return false; }
+  if (s1.length < 4) { msg.className = "alert err"; msg.textContent = "Şifre en az 4 karakter olmalı."; return false; }
+  if (s1 !== s2) { msg.className = "alert err"; msg.textContent = "Şifreler eşleşmiyor."; return false; }
+  var users = getUsers();
+  if (users[kadi]) { msg.className = "alert err"; msg.textContent = "Bu kullanıcı adı zaten kayıtlı. Giriş yapın."; return false; }
+  users[kadi] = s1;
+  localStorage.setItem("bank_users", JSON.stringify(users));
+  localStorage.setItem("bank_user", kadi);
+  if (!localStorage.getItem("bakiye")) localStorage.setItem("bakiye", "25750");
+  msg.className = "alert ok";
+  msg.textContent = "Kayıt başarılı! Yönlendiriliyorsunuz...";
+  setTimeout(function () { window.location.href = "index.html"; }, 600);
+  return false;
+}
 </script>
 </head>
 <body>
 <div class="login-wrap">
-  <form class="login-box" onsubmit="return girisKontrol(event)">
+  <div class="login-box">
     <div style="font-size:40px">🏦</div>
     <h2>Web Bank</h2>
     <p>İnternet Bankacılığına hoş geldiniz</p>
-    <label for="kadi">Kullanıcı Adı</label>
-    <input type="text" id="kadi" placeholder="örn. kullanıcı" autocomplete="username">
-    <label for="sifre">Şifre</label>
-    <input type="password" id="sifre" placeholder="••••••" autocomplete="current-password">
-    <button class="primary" type="submit">Giriş Yap</button>
+    <div class="tabs">
+      <button id="tab-giris" class="active" type="button" onclick="showTab('giris')">Giriş Yap</button>
+      <button id="tab-kayit" type="button" onclick="showTab('kayit')">Kayıt Ol</button>
+    </div>
+    <form id="form-giris" onsubmit="return girisKontrol(event)">
+      <label for="kadi">Kullanıcı Adı</label>
+      <input type="text" id="kadi" placeholder="örn. kullanıcı" autocomplete="username">
+      <label for="sifre">Şifre</label>
+      <input type="password" id="sifre" placeholder="••••••" autocomplete="current-password">
+      <button class="primary" type="submit">Giriş Yap</button>
+      <div class="demo-info">Demo giriş: <b>kullanıcı</b> / <b>010101</b></div>
+    </form>
+    <form id="form-kayit" style="display:none" onsubmit="return kayitOl(event)">
+      <label for="ykadi">Kullanıcı Adı</label>
+      <input type="text" id="ykadi" placeholder="yeni kullanıcı adı" autocomplete="username">
+      <label for="ysifre">Şifre</label>
+      <input type="password" id="ysifre" placeholder="en az 4 karakter" autocomplete="new-password">
+      <label for="ysifre2">Şifre (Tekrar)</label>
+      <input type="password" id="ysifre2" placeholder="şifreyi tekrar girin" autocomplete="new-password">
+      <button class="primary" type="submit">Kayıt Ol</button>
+    </form>
     <div id="msg" class="alert"></div>
-    <div class="demo-info">Demo giriş: <b>kullanıcı</b> / <b>010101</b></div>
-  </form>
+  </div>
 </div>
 <script src="gecis.js" defer></script>
 </body>

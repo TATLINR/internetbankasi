@@ -220,6 +220,15 @@ button.primary:hover { background: var(--accent-dark); }
 
 .login-box h2 { margin-bottom: 4px; }
 .login-box p { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+
+/* Giriş / Kayıt sekmeleri */
+.tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+.tabs button {
+  flex: 1; padding: 10px; border-radius: 10px;
+  border: 1.5px solid var(--border); background: #f8fafc;
+  font-weight: 700; font-size: 14px; color: var(--muted); cursor: pointer;
+}
+.tabs button.active { background: var(--primary); border-color: var(--primary); color: #fff; }
 .demo-info {
   margin-top: 14px;
   font-size: 12px;
