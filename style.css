@@ -303,6 +303,12 @@ body.dark {
   --shadow: 0 4px 18px rgba(0,0,0,0.4);
 }
 body.dark .topbar { background: linear-gradient(135deg, #020617, #1e3a5f); }
+body.dark h1, body.dark h2 { color: #e8eef7; }
+body.dark #welcome { color: #93c5fd; }
+body.dark .card strong { color: #e8eef7; }
+body.dark label { color: #cbd5e1; }
+body.dark .modal-head { color: #e8eef7; background: #1e293b; }
+body.dark .modal-box { background: #0f172a; }
 body.dark input, body.dark select { background: #0f172a; color: #e2e8f0; }
 body.dark .login-box { background: #1e293b; }
 body.dark .login-box h2 { color: #e2e8f0; }

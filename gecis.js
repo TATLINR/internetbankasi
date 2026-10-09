@@ -16,12 +16,12 @@ function closeModal() {
   modal.classList.remove("open");
   document.body.style.overflow = "";
   if (frame) frame.src = "about:blank";
-  // bakiye değişmiş olabilir, ana sayfayı tazele
+  // bakiye / kullanıcı adı değişmiş olabilir, ana sayfayı tazele
   if (typeof init === "function") { try { init(); } catch (e) {} }
 }
 
 document.addEventListener("click", function (e) {
-  // Modal kapatma
+  // Modal kapatma (ana sayfadaki kapat butonu / dışarı tıklama)
   if (e.target.closest("[data-close-modal]")) { closeModal(); return; }
   if (e.target.classList && e.target.classList.contains("modal")) { closeModal(); return; }
 
@@ -30,11 +30,23 @@ document.addEventListener("click", function (e) {
   var href = a.getAttribute("href");
   if (!href || href.startsWith("#")) return;
 
+  // PENCERE İÇİNDEYİZ (iframe): Ana Sayfa / Geri Dön pencereyi kapatsın,
+  // index.html'i pencerenin içinde açmasın
+  try {
+    if (window.top !== window.self && href === "index.html") {
+      e.preventDefault();
+      if (window.top && typeof window.top.closeModal === "function") window.top.closeModal();
+      else window.top.location.href = href;
+      return;
+    }
+  } catch (err) { /* cross-origin ise normal devam et */ }
+
   // Ana sayfadaki data-modal linkler pencere olarak açılır
   if (a.hasAttribute("data-modal")) {
     e.preventDefault();
     var card = a.querySelector("strong");
-    openModal(href, card ? card.textContent : "İşlem");
+    var label = card ? card.textContent : (a.textContent || "İşlem").trim();
+    openModal(href, label);
     return;
   }
 
