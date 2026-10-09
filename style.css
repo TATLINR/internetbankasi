@@ -305,3 +305,19 @@ body.dark .demo-info { background: #0f172a; border-color: #334155; }
   .balance-amount { font-size: 26px; }
   .container { padding: 18px 14px 36px; }
 }
+
+/* Sekmeler arası geçiş hareketi */
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.container, .login-box, .panel { animation: pageIn 0.32s ease; }
+.menu .card { animation: pageIn 0.35s ease backwards; }
+.menu a:nth-child(2) .card { animation-delay: 0.05s; }
+.menu a:nth-child(3) .card { animation-delay: 0.1s; }
+.menu a:nth-child(4) .card { animation-delay: 0.15s; }
+body.leaving { opacity: 0; transform: translateY(6px); transition: opacity 0.18s ease, transform 0.18s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .container, .login-box, .panel, .menu .card { animation: none; }
+  body.leaving { transition: none; }
+}
