@@ -78,20 +78,6 @@ body {
 h1, h2 { margin: 0 0 12px; color: var(--primary); }
 .topbar h2 { color: #fff; margin: 0; }
 
-/* Karşılama yazısı — şık serif font */
-#welcome {
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-  font-weight: 700;
-  font-size: 34px;
-  letter-spacing: 0.3px;
-  line-height: 1.2;
-  background: linear-gradient(90deg, var(--primary), #2b5ea7);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-#welcome .user-name { font-style: italic; }
-
 .topbar-actions { display: flex; gap: 8px; align-items: center; }
 p.muted { color: var(--muted); margin: 6px 0 18px; }
 
@@ -309,7 +295,6 @@ body.dark .topbar { background: linear-gradient(135deg, #020617, #1e3a5f); }
 body.dark input, body.dark select { background: #0f172a; color: #e2e8f0; }
 body.dark .login-box { background: #1e293b; }
 body.dark .login-box h2 { color: #e2e8f0; }
-body.dark #welcome { background: linear-gradient(90deg, #93c5fd, #e0f2fe); -webkit-background-clip: text; background-clip: text; }
 body.dark .balance-card { background: linear-gradient(135deg, #020617, #1e3a5f); }
 body.dark .button-back { background: #1e293b; color: #e2e8f0; }
 body.dark .demo-info { background: #0f172a; border-color: #334155; }
