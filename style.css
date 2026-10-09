@@ -78,6 +78,8 @@ body {
 h1, h2 { margin: 0 0 12px; color: var(--primary); }
 .topbar h2 { color: #fff; margin: 0; }
 
+#welcome { font-size: 26px; color: #2f5b9c; font-weight: 600; }
+
 .topbar-actions { display: flex; gap: 8px; align-items: center; }
 p.muted { color: var(--muted); margin: 6px 0 18px; }
 
