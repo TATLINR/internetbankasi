@@ -42,14 +42,21 @@ window.onload = init;
       <div class="balance-amount" id="bakiye">—</div>
       <div class="balance-iban">Kullanılabilir bakiye</div>
     </div>
-    <div><a href="hesap-ozeti.html" style="background:#fff;color:#12315e;text-decoration:none;padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px">Hesabı Gör</a></div>
+    <div><a href="hesap-ozeti.html" data-modal style="background:#fff;color:#12315e;text-decoration:none;padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px">Hesabı Gör</a></div>
   </div>
 
   <div class="menu">
-    <a href="transfer.html"><div class="card"><div class="icon">💸</div><strong>Para Transferi</strong><span>Havale / EFT gönder</span></div></a>
-    <a href="fatura.html"><div class="card"><div class="icon">🧾</div><strong>Fatura Ödeme</strong><span>Elektrik, su, telefon</span></div></a>
-    <a href="hesap-ozeti.html"><div class="card"><div class="icon">📊</div><strong>Hesap Özeti</strong><span>Son hareketler</span></div></a>
-    <a href="kart-islemleri.html"><div class="card"><div class="icon">💳</div><strong>Kart İşlemleri</strong><span>Limit, borç, ekstere</span></div></a>
+    <a href="transfer.html" data-modal><div class="card"><div class="icon">💸</div><strong>Para Transferi</strong><span>Havale / EFT gönder</span></div></a>
+    <a href="fatura.html" data-modal><div class="card"><div class="icon">🧾</div><strong>Fatura Ödeme</strong><span>Elektrik, su, telefon</span></div></a>
+    <a href="hesap-ozeti.html" data-modal><div class="card"><div class="icon">📊</div><strong>Hesap Özeti</strong><span>Son hareketler</span></div></a>
+    <a href="kart-islemleri.html" data-modal><div class="card"><div class="icon">💳</div><strong>Kart İşlemleri</strong><span>Limit, borç, ekstere</span></div></a>
+  </div>
+</div>
+
+<div id="modal" class="modal">
+  <div class="modal-box">
+    <div class="modal-head"><span id="modal-title">İşlem</span><button data-close-modal>✕ Kapat</button></div>
+    <iframe id="modal-frame" class="modal-frame" src="about:blank" title="İşlem penceresi"></iframe>
   </div>
 </div>
 <script src="gecis.js" defer></script>

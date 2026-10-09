@@ -178,17 +178,18 @@ button.primary:hover { background: var(--accent-dark); }
 .button-back, .back {
   display: inline-block;
   margin-top: 18px;
-  color: var(--primary);
+  color: #fff;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 600;
-  border: 1px solid var(--border);
-  padding: 9px 16px;
+  font-weight: 700;
+  border: none;
+  padding: 10px 20px;
   border-radius: 999px;
-  background: #fff;
+  background: var(--primary);
+  box-shadow: 0 2px 8px rgba(18,49,94,0.25);
 }
 
-.button-back:hover { background: #eef2f7; }
+.button-back:hover { background: var(--primary-dark); }
 
 /* Login */
 .login-wrap {
@@ -311,12 +312,64 @@ body.dark .demo-info { background: #0f172a; border-color: #334155; }
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: none; }
 }
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
 .container, .login-box, .panel { animation: pageIn 0.32s ease; }
 .menu .card { animation: pageIn 0.35s ease backwards; }
 .menu a:nth-child(2) .card { animation-delay: 0.05s; }
 .menu a:nth-child(3) .card { animation-delay: 0.1s; }
 .menu a:nth-child(4) .card { animation-delay: 0.15s; }
 body.leaving { opacity: 0; transform: translateY(6px); transition: opacity 0.18s ease, transform 0.18s ease; }
+
+/* Modal pencere */
+.modal {
+  position: fixed; inset: 0;
+  background: rgba(12, 25, 45, 0.55);
+  backdrop-filter: blur(3px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 50;
+}
+.modal.open { display: flex; }
+.modal-box {
+  background: var(--bg);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 640px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.35);
+  animation: modalIn 0.25s ease;
+  border: 1px solid var(--border);
+}
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  font-weight: 700;
+  color: var(--primary);
+}
+.modal-head button {
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.modal-head button:hover { background: var(--primary-dark); }
+.modal-frame { width: 100%; height: 62vh; min-height: 420px; border: none; background: var(--bg); }
 @media (prefers-reduced-motion: reduce) {
   .container, .login-box, .panel, .menu .card { animation: none; }
   body.leaving { transition: none; }
