@@ -175,6 +175,14 @@ button.primary, .btn {
 
 button.primary:hover { background: var(--accent-dark); }
 
+/* Yan yana butonlar (Gönder + Geri Dön gibi) */
+.btn-row { display: flex; gap: 10px; margin-top: 18px; }
+.btn-row .primary, .btn-row .button-back {
+  flex: 1; width: auto; margin: 0;
+  text-align: center; padding: 11px 12px; font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+}
+
 .button-back, .back {
   display: inline-block;
   margin-top: 18px;
